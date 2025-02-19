@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@my-broker-cloud/core": ["core/src/index.ts"],
+      "@my-broker-cloud/libs": ["libs/src/index.ts"],
+      "@my-broker-cloud/styles": ["styles/src/index.ts"],
+      "@my-broker-cloud/utils": ["utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

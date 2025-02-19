@@ -1,82 +1,199 @@
-# MyBrokerCloud
+# My Broker Cloud Nx Monorepo
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+## 🏗 Project Structure
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
-
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/vue-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-
-## Finish your CI setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/a8vaDMbBkl)
-
-
-## Run tasks
-
-To run the dev server for your app, use:
-
-```sh
-npx nx serve my-broker-cloud
+```
+my-nx-workspace/
+├── .github/                    # CI/CD and GitHub specific configurations
+│   └── workflows/              # GitHub Actions workflow definitions
+│
+├── apps/                       # Application-specific projects
+│   ├── client/                 # Client-facing web application
+│   └── admin/                  # Admin management web application
+│
+├── libs/                       # Shared libraries and components
+│   ├── ui/                     # Reusable UI components
+│   ├── core/                   # Core business logic and services
+│   ├── utils/                  # Utility functions and helpers
+│   └── styles/                 # Shared styling and design system
+│
+├── tools/                      # Development and build tools
+│   └── scripts/                # Utility scripts for development
+│
+└── config/                     # Environment and configuration files
 ```
 
-To create a production bundle:
+## 📦 Project Overview
 
-```sh
-npx nx build my-broker-cloud
+This monorepo is a Vue.js-based web application ecosystem using Nx for workspace management. It consists of two primary applications:
+- **Client Application**: Customer-facing interface
+- **Admin Application**: Administrative management portal
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v18+)
+- npm (v9+)
+- Nx CLI (`npm install -g nx`)
+
+### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
+npm install
+
+# Install Nx CLI globally
+npm install -g nx
 ```
 
-To see all available targets to run for a project, run:
+## 🔧 Workspace Commands
 
-```sh
-npx nx show project my-broker-cloud
+### Running Applications
+```bash
+# Run Client Application
+nx serve client
+
+# Run Admin Application
+nx serve admin
+
+# Run both applications in parallel
+nx run-many -t serve
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### Building Applications
+```bash
+# Build Client Application
+nx build client
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+# Build Admin Application
+nx build admin
 
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/vue:app demo
+# Build all applications
+nx run-many -t build
 ```
 
-To generate a new library, use:
+### Testing
+```bash
+# Run unit tests for a specific app
+nx test client
 
-```sh
-npx nx g @nx/vue:lib mylib
+# Run unit tests for a specific library
+nx test ui
+
+# Run all tests
+nx run-many -t test
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## 👥 Team Workflow Guidelines
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Development Workflow
+1. **Branch Strategy**
+   - `main`: Production-ready code
+   - `develop`: Integration branch
+   - Feature branches: `feature/your-feature-name`
+   - Hotfix branches: `hotfix/issue-description`
 
+2. **Code Review Process**
+   - All changes must be submitted via Pull Requests
+   - Minimum of 1 code review required
+   - CI checks must pass before merging
+   - Use conventional commits
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+3. **Shared Library Contributions**
+   - All shared components go into `libs/`
+   - Use TypeScript for type safety
+   - Write unit tests for new components/utilities
 
-## Install Nx Console
+### Team Collaboration Standards
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+#### Client Team
+- Work primarily in `apps/client/`
+- Utilize shared libraries from `libs/`
+- Follow atomic design principles in component creation
+- Use Vue Composition API
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+#### Admin Team
+- Work primarily in `apps/admin/`
+- Reuse components from `libs/ui/`
+- Maintain consistent design language
+- Implement role-based access control
 
-## Useful links
+## 🔍 Library Usage Guidelines
 
-Learn more:
+### UI Library (`libs/ui/`)
+- Contains atomic design components
+- Use for consistent design across applications
+- Example:
+  ```typescript
+  import { BaseButton } from '@my-broker-cloud/ui'
+  ```
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/vue-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Core Library (`libs/core/`)
+- Shared business logic
+- Authentication services
+- API clients
+- Example:
+  ```typescript
+  import { AuthService } from '@my-broker-cloud/core'
+  ```
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Utilities Library (`libs/utils/`)
+- Helper functions
+- Date manipulation
+- Formatting utilities
+- Example:
+  ```typescript
+  import { formatDate } from '@my-broker-cloud/utils'
+  ```
+
+## 🛠 Development Tools
+
+- **Nx**: Monorepo and task orchestration
+- **Vue 3**: Frontend framework
+- **Vite**: Build tool
+- **TypeScript**: Primary language
+- **Pinia**: State management
+- **Vitest**: Unit testing
+- **ESLint**: Code linting
+- **Prettier**: Code formatting
+
+## 📝 Commit Message Convention
+
+Use [Conventional Commits](https://www.conventionalcommits.org/)
+
+```
+<type>[optional scope]: <description>
+
+Examples:
+feat(client): add login page
+fix(admin): resolve permission bug
+docs: update README
+```
+
+## 🚧 Deployment
+
+- Automatic deployments via GitHub Actions
+- Staging and production environments configured
+- Environment-specific configurations in `config/`
+
+## 📋 Best Practices
+
+1. Keep shared logic in libraries
+2. Write comprehensive unit tests
+3. Follow SOLID principles
+4. Use TypeScript for type safety
+5. Keep components small and focused
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📄 License
+
+[Your License Here]

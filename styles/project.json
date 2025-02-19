@@ -1,0 +1,19 @@
+{
+  "name": "styles",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "styles/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/styles",
+        "main": "styles/src/index.ts",
+        "tsConfig": "styles/tsconfig.lib.json",
+        "assets": ["styles/*.md"]
+      }
+    }
+  }
+}
